@@ -66,7 +66,7 @@ export default function CashierTab() {
         <span style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>{t('table')} {order.table_num}</span>
       </div>
       <div style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '0.5rem' }}>
-        {order.items.map((i) => `${i.qty}× ${i.displayName || i.name}`).join(', ')}
+        {(order.items || []).map((i) => `${i.qty}× ${i.displayName || i.name}`).join(', ')}
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ color: 'var(--gold)', fontSize: '1.2rem', fontWeight: 'bold' }}>${order.total.toFixed(2)}</span>

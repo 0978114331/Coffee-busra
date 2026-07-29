@@ -99,7 +99,7 @@ export function getRevenueData(orders: Order[], mode: 'daily' | 'weekly' | 'mont
 export function getCategorySales(orders: Order[]): { labels: string[]; data: number[] } {
   const map = new Map<string, number>();
   for (const order of orders) {
-    for (const item of order.items) {
+    for (const item of (order.items || [])) {
       map.set(item.cat, (map.get(item.cat) ?? 0) + item.qty);
     }
   }
@@ -110,7 +110,7 @@ export function getCategorySales(orders: Order[]): { labels: string[]; data: num
 export function getTopProducts(orders: Order[], limit = 10): { labels: string[]; data: number[] } {
   const map = new Map<string, number>();
   for (const order of orders) {
-    for (const item of order.items) {
+    for (const item of (order.items || [])) {
       const name = item.displayName || item.name;
       map.set(name, (map.get(name) ?? 0) + item.qty);
     }
@@ -131,7 +131,7 @@ export function getTopCategory(orders: Order[]): string {
 }
 
 export function getTotalProductsSold(orders: Order[]): number {
-  return orders.reduce((sum, o) => sum + o.items.reduce((s, i) => s + i.qty, 0), 0);
+  return orders.reduce((sum, o) => sum + (o.items || []).reduce((s, i) => s + i.qty, 0), 0);
 }
 
 export function getAvgOrderValue(orders: Order[]): number {

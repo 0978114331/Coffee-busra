@@ -43,7 +43,7 @@ export default function KitchenTab() {
               </div>
 
               <div style={{ marginBottom: '1rem' }}>
-                {order.items.map((item, i) => (
+                {(order.items || []).map((item, i) => (
                   <div key={i} style={{ padding: '0.6rem 0', borderBottom: '1px solid rgba(201,168,76,0.08)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--cream)', fontWeight: '600' }}>

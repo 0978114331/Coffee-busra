@@ -17,7 +17,7 @@ const statusClass: Record<OrderStatus, string> = {
 
 export default function OrderRow({ order, onClick, showActions, onAdvance }: OrderRowProps) {
   const t = useStore((s) => s.t);
-  const itemsText = order.items
+  const itemsText = (order.items || [])
     .map((i) => `${i.qty}× ${i.displayName || i.name}`)
     .join(', ');
 

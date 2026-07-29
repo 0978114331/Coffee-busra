@@ -134,7 +134,7 @@ export default function OrdersTab() {
                   </div>
 
                   {group.orders.map((order) => {
-                    const itemsText = order.items
+                    const itemsText = (order.items || [])
                       .map((i) => `${i.qty}x ${i.displayName || i.name}`)
                       .join(', ');
                     const next = nextStatus[order.status];
@@ -194,7 +194,6 @@ export default function OrdersTab() {
         })
       )}
 
-      {/* Order Preview Modal */}
       <Modal open={previewOrder != null} onClose={() => setPreviewOrder(null)} maxWidth={680}>
         {previewOrder && (
           <>
@@ -223,7 +222,7 @@ export default function OrdersTab() {
               {t('orderedProducts')}
             </h3>
             <div style={{ display: 'grid', gap: '0.8rem', maxHeight: '40vh', overflowY: 'auto', paddingRight: '6px' }}>
-              {previewOrder.items.map((item, i) => (
+              {(previewOrder.items || []).map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center', background: 'var(--surface2)', padding: '0.8rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
                   {item.image && (
                     <img src={item.image} alt={item.name} style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />

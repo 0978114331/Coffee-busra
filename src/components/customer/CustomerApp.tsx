@@ -382,7 +382,7 @@ export default function CustomerApp() {
                       </span>
                     </div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '0.5rem' }}>
-                      {order.items.map((i) => `${i.qty}× ${i.displayName || i.name}`).join(', ')}
+                      {(order.items || []).map((i) => `${i.qty}× ${i.displayName || i.name}`).join(', ')}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>${order.total.toFixed(2)}</span>

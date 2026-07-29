@@ -26,7 +26,7 @@ export default function OrderReceipt({ order, settings }: OrderReceiptProps) {
         <p style={{ fontSize: '0.8rem' }}>Table: {order.table_num}</p>
       </div>
       <div style={{ borderTop: '1px dashed #000', borderBottom: '1px dashed #000', padding: '0.5rem 0', marginBottom: '0.5rem' }}>
-        {order.items.map((item, i) => (
+        {(order.items || []).map((item, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.3rem', fontSize: '0.8rem' }}>
             <span>{item.qty}× {item.displayName || item.name}</span>
             <span>${(item.price * item.qty).toFixed(2)}</span>

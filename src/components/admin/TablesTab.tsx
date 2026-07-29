@@ -131,7 +131,7 @@ export default function TablesTab() {
                 {o.note && (
                   <div style={{ fontSize: '0.8rem', color: 'var(--red)', marginBottom: '0.5rem', fontStyle: 'italic' }}>📝 {o.note}</div>
                 )}
-                {o.items.map((item, i) => (
+                {(o.items || []).map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', marginBottom: '0.4rem' }}>
                     {item.image && (
                       <img src={item.image} alt={item.name} style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
